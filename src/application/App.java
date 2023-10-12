@@ -26,6 +26,27 @@ public class App {
         else{
             Reservation reservation= new Reservation(number,checkin,checkout);
             System.out.println("Reservation: "+reservation);
+            
+            System.out.println();
+            System.out.println("Enter data to update the reservation:");
+            System.out.println("Checkin: ");
+            checkin= sdf.parse(sc.next());
+            System.out.println("Checkout: ");
+            checkout= sdf.parse(sc.next());
+
+            Date now= new Date();
+            if(checkin.before(now)||checkout.before(now)){
+                System.out.println("Error: must be future dates");
+            }
+            else if(!checkout.after(checkin)){
+                System.out.println("Error: o checkout tem de ser depois do checkin!");
+            }
+            else{
+                reservation.updateDates(checkin, checkout);
+                System.out.println("Reservation: "+ reservation);
+            }
+
+
         }
 
 
